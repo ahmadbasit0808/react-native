@@ -1,3 +1,10 @@
+/*
+This component showcase use of following components
+1.Flatlist (required props : 1)data:array 2)renderItem(item,index,separator) )
+2.ItemSeparatorComponent (component that renders between the items of list)
+3.ListHeaderComponent (component that renders at start of list)
+4.ListFooterComponent (component that renders at end of list)
+*/
 import { Text, View, FlatList, StyleSheet } from "react-native";
 const menuItemsToDisplay = [
   { name: "Hummus", price: "$5.00", id: "1A" },

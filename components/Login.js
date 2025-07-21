@@ -1,3 +1,13 @@
+/*
+This component showcase use of following components
+1.TextInput (handling the input using onChangeText , placeHolder , keyboardType , password hidden)
+2.Pressable (custom buttons and text pressables to handle form submission (android_ripple: add ripple behavior , onPress) )
+3.Alert (to show alerts)
+4.ImageBackground (to add bg images)
+5.KeyboardAvoidingView and Platform (the input box does not dissappear when keyboard is opened)
+6.keyboardDismissMode (the keyboard is dismissed on interaction by the user in ScrollView)
+7.Conditional Rendering (render components on basis of some condition)
+*/
 import { useState } from "react";
 import {
   Alert,
@@ -7,7 +17,10 @@ import {
   Text,
   TextInput,
   Pressable,
+  ImageBackground,
+  Platform,
 } from "react-native";
+import bgImage from "../img/image.png";
 
 export default function Login() {
   const [email, onChangeEmail] = useState("");
@@ -27,49 +40,68 @@ export default function Login() {
   };
 
   return (
-    <KeyboardAvoidingView style={styles.container}>
-      <ScrollView keyboardDismissMode="on-drag">
-        <Text style={styles.title}>Welcome to Little Lemon</Text>
-        {!login && (
-          <>
-            <Text style={styles.heading}>Login to Continue</Text>
-            <TextInput
-              style={styles.input}
-              placeholder="Enter your email"
-              value={email}
-              onChangeText={onChangeEmail}
-              keyboardType="email-address"
-            />
-            <TextInput
-              style={styles.input}
-              placeholder="Enter your password"
-              value={password}
-              secureTextEntry={true}
-              onChangeText={onChangePassword}
-            />
-            <Pressable onPress={handleForget}>
-              <Text style={styles.fpText}>Forgot your password</Text>
-            </Pressable>
-            <Pressable style={styles.button} onPress={handleSubmit}>
-              <Text style={styles.buttonText}>Login</Text>
-            </Pressable>
-          </>
-        )}
-        {login && (
-          <>
-            <Text style={styles.heading}>Logged in with Id {email}</Text>
-            <Pressable
-              style={styles.button}
-              onPress={() => {
-                onChangeLogin(!login);
-                onChangeEmail("");
-                onChangePassword("");
-              }}
-            >
-              <Text style={styles.buttonText}>Login with different Id</Text>
-            </Pressable>
-          </>
-        )}
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.container}
+    >
+      <ScrollView
+        contentContainerStyle={{ flexGrow: 1 }}
+        keyboardDismissMode="on-drag"
+      >
+        <ImageBackground
+          resizeMode="cover"
+          style={styles.bgImage}
+          source={bgImage}
+        >
+          <Text style={styles.title}>Welcome to Little Lemon</Text>
+          {!login && (
+            <>
+              <Text style={styles.heading}>Login to Continue</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="Enter your email"
+                value={email}
+                onChangeText={onChangeEmail}
+                keyboardType="email-address"
+              />
+              <TextInput
+                style={styles.input}
+                placeholder="Enter your password"
+                value={password}
+                secureTextEntry={true}
+                onChangeText={onChangePassword}
+              />
+              <Pressable onPress={handleForget}>
+                <Text style={styles.fpText}>Forgot your password</Text>
+              </Pressable>
+              <Pressable
+                android_ripple={{
+                  color: "#ff00ff",
+                  radius: 200,
+                }}
+                style={styles.button}
+                onPress={handleSubmit}
+              >
+                <Text style={styles.buttonText}>Login</Text>
+              </Pressable>
+            </>
+          )}
+          {login && (
+            <>
+              <Text style={styles.heading}>Logged in with Id {email}</Text>
+              <Pressable
+                style={styles.button}
+                onPress={() => {
+                  onChangeLogin(!login);
+                  onChangeEmail("");
+                  onChangePassword("");
+                }}
+              >
+                <Text style={styles.buttonText}>Login with different Id</Text>
+              </Pressable>
+            </>
+          )}
+        </ImageBackground>
       </ScrollView>
     </KeyboardAvoidingView>
   );
@@ -78,8 +110,12 @@ export default function Login() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignSelf: "center",
     paddingHorizontal: 20,
+  },
+  bgImage: {
+    marginVertical: 20,
+    flex: 1,
+    padding: 20,
   },
   title: {
     padding: 30,
@@ -101,7 +137,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   fpText: {
-    color: "#2fd7ea",
+    color: "#ff7700ff",
     fontSize: 14,
     paddingHorizontal: 10,
   },

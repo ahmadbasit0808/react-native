@@ -1,3 +1,12 @@
+/*
+This component showcase use of following components
+1.TextInput (handling the input using onChangeText , placeHolder , keyboardType , password hidden maxLength , multiline)
+2.Touchable Opacity (custom buttons to handle form submission ( onPress) )
+3.Alert (to show alerts)
+4.Email Checker ((!/\S+@\S+\.\S+/.test(email)))
+5.KeyboardAvoidingView and Platform (the input box does not dissappear when keyboard is opened)
+6.keyboardDismissMode (the keyboard is dismissed on interaction by the user in ScrollView)
+*/
 import { useState } from "react";
 import {
   Text,

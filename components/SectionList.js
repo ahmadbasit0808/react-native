@@ -1,3 +1,11 @@
+/*
+This component showcase use of following components
+1.Sectionlistlist (required props : 1)sections:array 2)renderItem(item,index,object,separator) )
+2.ItemSeparatorComponent (component that renders between the items of list)
+3.ListHeaderComponent (component that renders at start of list)
+4.ListFooterComponent (component that renders at end of list)
+5.renderSectionHeader (component that renders a header at start of section ) parameters to the function ({section : {title}})
+*/
 import { Text, View, SectionList, StyleSheet } from "react-native";
 const menuItemsToDisplay = [
   {
