@@ -1,13 +1,20 @@
-import * as React from "react";
-import { View, Text, StyleSheet, SafeAreaView } from "react-native";
+import { View, StyleSheet, SafeAreaView, useColorScheme } from "react-native";
 
 import LittleLemonHeader from "./components/LittleLemonHeader";
 import Login from "./components/Login";
 
 export default function App() {
+  const colorScheme = useColorScheme();
   return (
     <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
+      <View
+        style={[
+          styles.container,
+          colorScheme === "light"
+            ? { backgroundColor: "#dddddd" }
+            : { backgroundColor: "#333333" },
+        ]}
+      >
         <LittleLemonHeader />
         <Login />
       </View>
@@ -21,7 +28,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: "#333333",
   },
   footerContainer: { backgroundColor: "#333333" },
 });

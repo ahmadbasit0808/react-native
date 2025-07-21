@@ -7,6 +7,7 @@ This component showcase use of following components
 5.KeyboardAvoidingView and Platform (the input box does not dissappear when keyboard is opened)
 6.keyboardDismissMode (the keyboard is dismissed on interaction by the user in ScrollView)
 7.Conditional Rendering (render components on basis of some condition)
+8.useColorScheme (Helps in maintaining app when its in light and dark modes)
 */
 import { useState } from "react";
 import {
@@ -18,11 +19,13 @@ import {
   TextInput,
   Pressable,
   ImageBackground,
+  useColorScheme,
   Platform,
 } from "react-native";
 import bgImage from "../img/image.png";
 
 export default function Login() {
+  const colorScheme = useColorScheme();
   const [email, onChangeEmail] = useState("");
   const [password, onChangePassword] = useState("");
   const [login, onChangeLogin] = useState(false);
@@ -53,19 +56,45 @@ export default function Login() {
           style={styles.bgImage}
           source={bgImage}
         >
-          <Text style={styles.title}>Welcome to Little Lemon</Text>
+          <Text
+            style={[
+              styles.title,
+              colorScheme === "light" ? { color: "black" } : { color: "white" },
+            ]}
+          >
+            Welcome to Little Lemon {colorScheme}
+          </Text>
           {!login && (
             <>
-              <Text style={styles.heading}>Login to Continue</Text>
+              <Text
+                style={[
+                  styles.heading,
+                  colorScheme === "light"
+                    ? { color: "black" }
+                    : { color: "white" },
+                ]}
+              >
+                Login to Continue
+              </Text>
               <TextInput
-                style={styles.input}
+                style={[
+                  styles.input,
+                  colorScheme === "light"
+                    ? { backgroundColor: "#d3cfcf" }
+                    : { backgroundColor: "white" },
+                ]}
                 placeholder="Enter your email"
                 value={email}
                 onChangeText={onChangeEmail}
                 keyboardType="email-address"
               />
               <TextInput
-                style={styles.input}
+                style={[
+                  styles.input,
+                  colorScheme === "light"
+                    ? { backgroundColor: "#d3cfcf" }
+                    : { backgroundColor: "white" },
+                ]}
                 placeholder="Enter your password"
                 value={password}
                 secureTextEntry={true}
@@ -82,7 +111,16 @@ export default function Login() {
                 style={styles.button}
                 onPress={handleSubmit}
               >
-                <Text style={styles.buttonText}>Login</Text>
+                <Text
+                  style={[
+                    styles.buttonText,
+                    colorScheme === "light"
+                      ? { color: "black" }
+                      : { color: "white" },
+                  ]}
+                >
+                  Login
+                </Text>
               </Pressable>
             </>
           )}
@@ -97,7 +135,16 @@ export default function Login() {
                   onChangePassword("");
                 }}
               >
-                <Text style={styles.buttonText}>Login with different Id</Text>
+                <Text
+                  style={[
+                    styles.buttonText,
+                    colorScheme === "light"
+                      ? { color: "black" }
+                      : { color: "white" },
+                  ]}
+                >
+                  Login with different Id
+                </Text>
               </Pressable>
             </>
           )}
@@ -121,20 +168,18 @@ const styles = StyleSheet.create({
     padding: 30,
     textAlign: "center",
     fontSize: 30,
-    color: "white",
   },
   heading: {
     padding: 20,
     textAlign: "center",
     fontSize: 22,
-    color: "white",
   },
   input: {
-    backgroundColor: "white",
     marginBottom: 10,
     borderRadius: 6,
     paddingLeft: 12,
     fontSize: 16,
+    color: "black",
   },
   fpText: {
     color: "#ff7700ff",
