@@ -6,21 +6,20 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  TouchableOpacity,
+  Pressable,
 } from "react-native";
 
 export default function Login() {
   const [email, onChangeEmail] = useState("");
   const [password, onChangePassword] = useState("");
+  const [login, onChangeLogin] = useState(false);
 
   const handleSubmit = () => {
     if (!email || !password) {
       Alert.alert("Please fill the information.");
       return;
     }
-    Alert.alert("Login Successful");
-    onChangeEmail("");
-    onChangePassword("");
+    onChangeLogin(!login);
   };
 
   const handleForget = () => {
@@ -31,31 +30,46 @@ export default function Login() {
     <KeyboardAvoidingView style={styles.container}>
       <ScrollView keyboardDismissMode="on-drag">
         <Text style={styles.title}>Welcome to Little Lemon</Text>
-        <Text style={styles.heading}>Login to Continue</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter your email"
-          value={email}
-          onChangeText={onChangeEmail}
-          keyboardType="email-address"
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Enter your password"
-          value={password}
-          secureTextEntry={true}
-          onChangeText={onChangePassword}
-        />
-        <TouchableOpacity activeOpacity={0.8} onPress={handleForget}>
-          <Text style={styles.fpText}>Forgot your password</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          activeOpacity={0.8}
-          onPress={handleSubmit}
-        >
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
+        {!login && (
+          <>
+            <Text style={styles.heading}>Login to Continue</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Enter your email"
+              value={email}
+              onChangeText={onChangeEmail}
+              keyboardType="email-address"
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Enter your password"
+              value={password}
+              secureTextEntry={true}
+              onChangeText={onChangePassword}
+            />
+            <Pressable onPress={handleForget}>
+              <Text style={styles.fpText}>Forgot your password</Text>
+            </Pressable>
+            <Pressable style={styles.button} onPress={handleSubmit}>
+              <Text style={styles.buttonText}>Login</Text>
+            </Pressable>
+          </>
+        )}
+        {login && (
+          <>
+            <Text style={styles.heading}>Logged in with Id {email}</Text>
+            <Pressable
+              style={styles.button}
+              onPress={() => {
+                onChangeLogin(!login);
+                onChangeEmail("");
+                onChangePassword("");
+              }}
+            >
+              <Text style={styles.buttonText}>Login with different Id</Text>
+            </Pressable>
+          </>
+        )}
       </ScrollView>
     </KeyboardAvoidingView>
   );
