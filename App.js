@@ -28,6 +28,18 @@ export default function App() {
         initialRouteName="Welcome"
         screenOptions={{
           headerStyle: { backgroundColor: "#EE9972" },
+          headerTintColor: "#111",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+          headerRight: () => (
+            <Image
+              source={logo}
+              style={{ width: 100, height: 40, resizeMode: "contain" }}
+            />
+          ),
+          tabBarStyle: { backgroundColor: "#EE9972" },
+          tabBarActiveTintColor: "#111",
           contentStyle: getThemedBg(colorScheme),
         }}
       >
