@@ -4,7 +4,7 @@ export default function LittleLemonFooter() {
   return (
     <View style={styles.container}>
       <Text style={styles.footerText}>
-        All rights reserved by Little Lemon, 2022{" "}
+        All rights reserved by Little Lemon, 2022
       </Text>
     </View>
   );

@@ -1,33 +1,46 @@
-import { View, StyleSheet, SafeAreaView, useColorScheme } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { useColorScheme } from "react-native";
 
-import LittleLemonHeader from "./components/LittleLemonHeader";
 import Login from "./components/Login";
+import MenuItems from "./components/SectionList";
+import WelcomeScreen from "./components/WelcomeScreen";
+import Form from "./components/TextInput";
+import MenuItemsFlat from "./components/FlatList";
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const colorScheme = useColorScheme();
+  const colorScheme = useColorScheme;
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <View
-        style={[
-          styles.container,
-          colorScheme === "light"
-            ? { backgroundColor: "#dddddd" }
-            : { backgroundColor: "#333333" },
-        ]}
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName="Welcome"
+        screenOptions={{
+          headerStyle: { backgroundColor: "#EE9972" },
+          contentStyle: {
+            backgroundColor: colorScheme === "light" ? "#dddddd" : "#333333",
+          },
+        }}
       >
-        <LittleLemonHeader />
-        <Login />
-      </View>
-    </SafeAreaView>
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Feedback" component={Form} />
+        <Stack.Screen
+          options={{ title: "Menu" }}
+          name="ListMenu"
+          component={MenuItemsFlat}
+        />
+        <Stack.Screen
+          options={{ title: "Menu" }}
+          name="SectionMenu"
+          component={MenuItems}
+        />
+        <Stack.Screen
+          name="Welcome"
+          options={{ title: "Home", headerShown: false }}
+          component={WelcomeScreen}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-  },
-  container: {
-    flex: 1,
-  },
-  footerContainer: { backgroundColor: "#333333" },
-});

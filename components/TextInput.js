@@ -63,11 +63,9 @@ export default function Form() {
       style={styles.container}
     >
       <ScrollView keyboardDismissMode="on-drag">
-        <Text style={styles.title}>Welcome to Little Lemon</Text>
+        <Text style={styles.title}>Feedback Form</Text>
         <Text style={styles.description}>
-          Little Lemon is a charming neighbourhood bistro that serves simple
-          food and classic cocktails in a lively but casual environment. We
-          would love to hear your experience with us!
+          Share your experience with us at Little Lemon
         </Text>
         <View style={styles.inputBox}>
           <Text style={styles.label}>First Name:</Text>
@@ -148,16 +146,17 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   title: {
-    fontSize: 30,
+    fontSize: 26,
     color: "#f5f5f5",
-    padding: 30,
+    padding: 20,
     textAlign: "center",
   },
   description: {
-    fontSize: 21,
+    fontSize: 20,
     color: "#f5f5f5",
-    padding: 10,
+    paddingHorizontal: 15,
     textAlign: "center",
+    marginBottom: 10,
   },
   inputBox: {
     paddingHorizontal: 20,

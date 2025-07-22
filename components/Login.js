@@ -126,7 +126,16 @@ export default function Login() {
           )}
           {login && (
             <>
-              <Text style={styles.heading}>Logged in with Id {email}</Text>
+              <Text
+                style={[
+                  styles.heading,
+                  colorScheme === "light"
+                    ? { color: "black" }
+                    : { color: "white" },
+                ]}
+              >
+                Logged in with Id {email}
+              </Text>
               <Pressable
                 style={styles.button}
                 onPress={() => {

@@ -42,7 +42,7 @@ const Item = ({ name, price, index }) => {
   );
 };
 
-export default function MenuItems() {
+export default function MenuItemsFlat() {
   const renderItem = ({ item, index }) => {
     return <Item name={item.name} price={item.price} index={index + 1} />;
   };

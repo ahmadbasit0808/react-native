@@ -60,10 +60,10 @@ const Item = ({ name, price }) => {
   );
 };
 const Header = () => {
-  return <Text style={menuItems.title}>View Menu</Text>;
+  return <Text style={menuItems.title}>Sections</Text>;
 };
 const Footer = () => {
-  return <Text style={menuItems.title}>No more products</Text>;
+  return <Text style={menuItems.title}>End of list</Text>;
 };
 
 const Separator = () => {
