@@ -1,9 +1,24 @@
-import { ScrollView, Text, StyleSheet, Pressable, View } from "react-native";
+/*
+This component showcase use of following components
+1.The use of navigation.navigate to navigate or move between screens
+2. contentContainerStyle={{ flexGrow: 1 }} to align the content accordingly
+*/
+
+import {
+  ScrollView,
+  Text,
+  StyleSheet,
+  Pressable,
+  useColorScheme,
+  View,
+} from "react-native";
 
 import LittleLemonHeader from "./LittleLemonHeader";
 import LittleLemonFooter from "./LittleLemonFooter";
+import { getThemedText } from "../utils/colorSchemes";
 
 export default function WelcomeScreen({ navigation }) {
+  const colorScheme = useColorScheme();
   return (
     <ScrollView indicatorStyle="white" contentContainerStyle={{ flexGrow: 1 }}>
       <LittleLemonHeader />
@@ -35,9 +50,11 @@ export default function WelcomeScreen({ navigation }) {
           <Text style={styles.buttonText}>Feedback</Text>
         </Pressable>
       </View>
-      <View style={{ flexGrow: 1, justifyContent: "center" }}>
-        <Text style={styles.headerText}>Welcome to Little Lemon</Text>
-        <Text style={styles.regularText}>
+      <View style={styles.container}>
+        <Text style={getThemedText(styles.headerText, colorScheme)}>
+          Welcome to Little Lemon
+        </Text>
+        <Text style={getThemedText(styles.regularText, colorScheme)}>
           Little Lemon is a charming neighborhood bistro that serves simple food
           and classic cocktails in a lively but casual environment. We would
           love to hear more about your experience with us!
@@ -49,17 +66,19 @@ export default function WelcomeScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flexGrow: 1,
+    justifyContent: "center",
+  },
   headerText: {
     paddingHorizontal: 40,
     fontSize: 30,
-    color: "#EDEFEE",
     textAlign: "center",
   },
   regularText: {
     fontSize: 24,
     padding: 25,
     marginVertical: 8,
-    color: "#EDEFEE",
     textAlign: "center",
   },
   row: {

@@ -101,7 +101,6 @@ export default function MenuItems() {
 const menuItems = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#333333",
   },
   title: {
     textAlign: "center",

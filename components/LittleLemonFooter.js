@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   footerText: {
+    padding: 5,
     fontSize: 18,
     color: "black",
     textAlign: "center",

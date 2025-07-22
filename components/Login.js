@@ -23,6 +23,7 @@ import {
   Platform,
 } from "react-native";
 import bgImage from "../img/image.png";
+import { getThemedText, getThemedInput } from "../utils/colorSchemes";
 
 export default function Login() {
   const colorScheme = useColorScheme();
@@ -56,45 +57,23 @@ export default function Login() {
           style={styles.bgImage}
           source={bgImage}
         >
-          <Text
-            style={[
-              styles.title,
-              colorScheme === "light" ? { color: "black" } : { color: "white" },
-            ]}
-          >
+          <Text style={getThemedText(styles.title, colorScheme)}>
             Welcome to Little Lemon {colorScheme}
           </Text>
           {!login && (
             <>
-              <Text
-                style={[
-                  styles.heading,
-                  colorScheme === "light"
-                    ? { color: "black" }
-                    : { color: "white" },
-                ]}
-              >
+              <Text style={getThemedText(styles.heading, colorScheme)}>
                 Login to Continue
               </Text>
               <TextInput
-                style={[
-                  styles.input,
-                  colorScheme === "light"
-                    ? { backgroundColor: "#d3cfcf" }
-                    : { backgroundColor: "white" },
-                ]}
+                style={getThemedInput(styles.input, colorScheme)}
                 placeholder="Enter your email"
                 value={email}
                 onChangeText={onChangeEmail}
                 keyboardType="email-address"
               />
               <TextInput
-                style={[
-                  styles.input,
-                  colorScheme === "light"
-                    ? { backgroundColor: "#d3cfcf" }
-                    : { backgroundColor: "white" },
-                ]}
+                style={getThemedInput(styles.input, colorScheme)}
                 placeholder="Enter your password"
                 value={password}
                 secureTextEntry={true}
@@ -111,29 +90,13 @@ export default function Login() {
                 style={styles.button}
                 onPress={handleSubmit}
               >
-                <Text
-                  style={[
-                    styles.buttonText,
-                    colorScheme === "light"
-                      ? { color: "black" }
-                      : { color: "white" },
-                  ]}
-                >
-                  Login
-                </Text>
+                <Text style={styles.buttonText}>Login</Text>
               </Pressable>
             </>
           )}
           {login && (
             <>
-              <Text
-                style={[
-                  styles.heading,
-                  colorScheme === "light"
-                    ? { color: "black" }
-                    : { color: "white" },
-                ]}
-              >
+              <Text style={getThemedText(styles.heading, colorScheme)}>
                 Logged in with Id {email}
               </Text>
               <Pressable
@@ -144,16 +107,7 @@ export default function Login() {
                   onChangePassword("");
                 }}
               >
-                <Text
-                  style={[
-                    styles.buttonText,
-                    colorScheme === "light"
-                      ? { color: "black" }
-                      : { color: "white" },
-                  ]}
-                >
-                  Login with different Id
-                </Text>
+                <Text style={styles.buttonText}>Login with different Id</Text>
               </Pressable>
             </>
           )}

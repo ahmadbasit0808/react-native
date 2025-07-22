@@ -27,8 +27,6 @@ const styles = StyleSheet.create({
   headerImage: {
     height: 100,
     width: "80%",
-    fontSize: 30,
-    color: "black",
     alignSelf: "center",
   },
 });

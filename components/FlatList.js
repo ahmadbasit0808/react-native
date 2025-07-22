@@ -5,7 +5,9 @@ This component showcase use of following components
 3.ListHeaderComponent (component that renders at start of list)
 4.ListFooterComponent (component that renders at end of list)
 */
-import { Text, View, FlatList, StyleSheet } from "react-native";
+import { Text, View, FlatList, StyleSheet, useColorScheme } from "react-native";
+import { getThemedText } from "../utils/colorSchemes";
+
 const menuItemsToDisplay = [
   { name: "Hummus", price: "$5.00", id: "1A" },
   { name: "Moutabal", price: "$5.00", id: "2B" },
@@ -43,12 +45,13 @@ const Item = ({ name, price, index }) => {
 };
 
 export default function MenuItemsFlat() {
+  const colorScheme = useColorScheme();
   const renderItem = ({ item, index }) => {
     return <Item name={item.name} price={item.price} index={index + 1} />;
   };
   return (
     <View style={menuItems.container}>
-      <Text style={menuItems.title}>View Menu</Text>
+      <Text style={getThemedText(menuItems.title, colorScheme)}>View Menu</Text>
       <Item index="Sr No" name="Name" price="Price" />
       <FlatList
         style={menuItems.list}
@@ -63,12 +66,10 @@ export default function MenuItemsFlat() {
 const menuItems = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#333333",
     paddingHorizontal: 20,
   },
   title: {
     textAlign: "center",
-    color: "white",
     fontSize: 24,
   },
   itemBox: {

@@ -10,6 +10,7 @@ This component showcase use of following components
 import { useState } from "react";
 import {
   Text,
+  useColorScheme,
   View,
   ScrollView,
   TextInput,
@@ -19,6 +20,7 @@ import {
   Platform,
   Alert,
 } from "react-native";
+import { getThemedText, getThemedInput } from "../utils/colorSchemes";
 
 export default function Form() {
   const [formData, setFormData] = useState({
@@ -57,20 +59,26 @@ export default function Form() {
     resetForm();
   };
 
+  const colorScheme = useColorScheme();
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={styles.container}
     >
       <ScrollView keyboardDismissMode="on-drag">
-        <Text style={styles.title}>Feedback Form</Text>
-        <Text style={styles.description}>
+        <Text style={getThemedText(styles.title, colorScheme)}>
+          Feedback Form
+        </Text>
+        <Text style={getThemedText(styles.description, colorScheme)}>
           Share your experience with us at Little Lemon
         </Text>
         <View style={styles.inputBox}>
-          <Text style={styles.label}>First Name:</Text>
+          <Text style={getThemedText(styles.label, colorScheme)}>
+            First Name:
+          </Text>
           <TextInput
-            style={styles.input}
+            style={getThemedInput(styles.input, colorScheme)}
             placeholder="John"
             value={formData.firstName}
             onChangeText={(text) => handleChange("firstName", text)}
@@ -79,9 +87,11 @@ export default function Form() {
           />
         </View>
         <View style={styles.inputBox}>
-          <Text style={styles.label}>Last Name:</Text>
+          <Text style={getThemedText(styles.label, colorScheme)}>
+            Last Name:
+          </Text>
           <TextInput
-            style={styles.input}
+            style={getThemedInput(styles.input, colorScheme)}
             placeholder="Doe"
             value={formData.lastName}
             onChangeText={(text) => handleChange("lastName", text)}
@@ -90,9 +100,11 @@ export default function Form() {
           />
         </View>
         <View style={styles.inputBox}>
-          <Text style={styles.label}>Email Address:</Text>
+          <Text style={getThemedText(styles.label, colorScheme)}>
+            Email Address:
+          </Text>
           <TextInput
-            style={styles.input}
+            style={getThemedInput(styles.input, colorScheme)}
             placeholder="johndoe@gmail.com"
             value={formData.email}
             keyboardType="email-address"
@@ -102,9 +114,9 @@ export default function Form() {
           />
         </View>
         <View style={styles.inputBox}>
-          <Text style={styles.label}>Phone:</Text>
+          <Text style={getThemedText(styles.label, colorScheme)}>Phone:</Text>
           <TextInput
-            style={styles.input}
+            style={getThemedInput(styles.input, colorScheme)}
             placeholder="03225663766"
             value={formData.phone}
             maxLength={11}
@@ -115,9 +127,11 @@ export default function Form() {
           />
         </View>
         <View style={styles.inputBox}>
-          <Text style={styles.label}>Feedback:</Text>
+          <Text style={getThemedText(styles.label, colorScheme)}>
+            Feedback:
+          </Text>
           <TextInput
-            style={styles.feedback}
+            style={getThemedInput(styles.feedback, colorScheme)}
             multiline={true}
             maxLength={250}
             placeholder="Enter your message."
@@ -147,13 +161,11 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 26,
-    color: "#f5f5f5",
     padding: 20,
     textAlign: "center",
   },
   description: {
     fontSize: 20,
-    color: "#f5f5f5",
     paddingHorizontal: 15,
     textAlign: "center",
     marginBottom: 10,
@@ -163,33 +175,29 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
   },
   label: {
-    color: "white",
     fontSize: 16,
     paddingVertical: 10,
     paddingLeft: 5,
   },
   input: {
-    backgroundColor: "white",
     paddingLeft: 10,
     paddingVertical: 8,
     height: 40,
     borderRadius: 8,
   },
   button: {
+    backgroundColor: "#EE9972",
     alignSelf: "center",
-    padding: 10,
-    width: "40%",
-    backgroundColor: "#14c8faff",
     borderRadius: 8,
-    margin: 25,
+    margin: 20,
   },
   buttonText: {
+    fontSize: 16,
     textAlign: "center",
-    color: "white",
-    fontWeight: "bold",
+    paddingVertical: 10,
+    paddingHorizontal: 40,
   },
   feedback: {
-    backgroundColor: "white",
     paddingLeft: 10,
     paddingVertical: 8,
     textAlignVertical: "top",
