@@ -15,3 +15,10 @@ export const getThemedText = (baseStyle, colorScheme) => {
 export const getThemedBg = (colorScheme) => {
   return { backgroundColor: colorScheme === "light" ? "#dddddd" : "#333333" };
 };
+
+export const getThemedBgScreen = (baseStyle, colorScheme) => {
+  return [
+    baseStyle,
+    { backgroundColor: colorScheme === "light" ? "#dddddd" : "#333333" },
+  ];
+};

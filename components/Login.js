@@ -23,7 +23,12 @@ import {
   Platform,
 } from "react-native";
 import bgImage from "../img/image.png";
-import { getThemedText, getThemedInput } from "../utils/colorSchemes";
+import {
+  getThemedText,
+  getThemedInput,
+  getThemedBgScreen,
+} from "../utils/colorSchemes";
+import { ButtonStyles } from "../styles/button";
 
 export default function Login() {
   const colorScheme = useColorScheme();
@@ -46,7 +51,7 @@ export default function Login() {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={styles.container}
+      style={getThemedBgScreen(styles.container, colorScheme)}
     >
       <ScrollView
         contentContainerStyle={{ flexGrow: 1 }}
@@ -87,10 +92,10 @@ export default function Login() {
                   color: "#ff00ff",
                   radius: 200,
                 }}
-                style={styles.button}
+                style={ButtonStyles.button}
                 onPress={handleSubmit}
               >
-                <Text style={styles.buttonText}>Login</Text>
+                <Text style={ButtonStyles.buttonText}>Login</Text>
               </Pressable>
             </>
           )}
@@ -100,14 +105,16 @@ export default function Login() {
                 Logged in with Id {email}
               </Text>
               <Pressable
-                style={styles.button}
+                style={ButtonStyles.button}
                 onPress={() => {
                   onChangeLogin(!login);
                   onChangeEmail("");
                   onChangePassword("");
                 }}
               >
-                <Text style={styles.buttonText}>Login with different Id</Text>
+                <Text style={ButtonStyles.buttonText}>
+                  Login with different Id
+                </Text>
               </Pressable>
             </>
           )}
@@ -124,7 +131,7 @@ const styles = StyleSheet.create({
   },
   bgImage: {
     marginVertical: 20,
-    flex: 1,
+    flexGrow: 1,
     padding: 20,
   },
   title: {
@@ -148,17 +155,5 @@ const styles = StyleSheet.create({
     color: "#ff7700ff",
     fontSize: 14,
     paddingHorizontal: 10,
-  },
-  button: {
-    backgroundColor: "#EE9972",
-    alignSelf: "center",
-    borderRadius: 8,
-    margin: 20,
-  },
-  buttonText: {
-    fontSize: 16,
-    textAlign: "center",
-    paddingVertical: 10,
-    paddingHorizontal: 40,
   },
 });

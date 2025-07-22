@@ -6,7 +6,14 @@ This component showcase use of following components
 4.ListFooterComponent (component that renders at end of list)
 5.renderSectionHeader (component that renders a header at start of section ) parameters to the function ({section : {title}})
 */
-import { Text, View, SectionList, StyleSheet } from "react-native";
+import {
+  Text,
+  View,
+  SectionList,
+  StyleSheet,
+  useColorScheme,
+} from "react-native";
+import { getThemedBgScreen } from "../utils/colorSchemes";
 const menuItemsToDisplay = [
   {
     title: "Appetizers",
@@ -78,11 +85,12 @@ const sectionHeader = ({ section: { title } }) => {
 };
 
 export default function MenuItems() {
+  const colorScheme = useColorScheme();
   const renderItem = ({ item }) => {
     return <Item name={item.name} price={item.price} />;
   };
   return (
-    <View style={menuItems.container}>
+    <View style={getThemedBgScreen(menuItems.container, colorScheme)}>
       <SectionList
         renderSectionHeader={sectionHeader}
         indicatorStyle="white"

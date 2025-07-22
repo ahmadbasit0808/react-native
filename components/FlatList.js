@@ -6,7 +6,7 @@ This component showcase use of following components
 4.ListFooterComponent (component that renders at end of list)
 */
 import { Text, View, FlatList, StyleSheet, useColorScheme } from "react-native";
-import { getThemedText } from "../utils/colorSchemes";
+import { getThemedText, getThemedBgScreen } from "../utils/colorSchemes";
 
 const menuItemsToDisplay = [
   { name: "Hummus", price: "$5.00", id: "1A" },
@@ -50,7 +50,7 @@ export default function MenuItemsFlat() {
     return <Item name={item.name} price={item.price} index={index + 1} />;
   };
   return (
-    <View style={menuItems.container}>
+    <View style={getThemedBgScreen(menuItems.container, colorScheme)}>
       <Text style={getThemedText(menuItems.title, colorScheme)}>View Menu</Text>
       <Item index="Sr No" name="Name" price="Price" />
       <FlatList

@@ -15,41 +15,16 @@ import {
 
 import LittleLemonHeader from "./LittleLemonHeader";
 import LittleLemonFooter from "./LittleLemonFooter";
-import { getThemedText } from "../utils/colorSchemes";
+import { getThemedText, getThemedBg } from "../utils/colorSchemes";
 
 export default function WelcomeScreen({ navigation }) {
   const colorScheme = useColorScheme();
   return (
-    <ScrollView indicatorStyle="white" contentContainerStyle={{ flexGrow: 1 }}>
+    <ScrollView
+      indicatorStyle="white"
+      contentContainerStyle={[getThemedBg(colorScheme), { flexGrow: 1 }]}
+    >
       <LittleLemonHeader />
-
-      <View style={styles.row}>
-        <Pressable
-          style={styles.button}
-          onPress={() => navigation.navigate("ListMenu")}
-        >
-          <Text style={styles.buttonText}>Menu</Text>
-        </Pressable>
-        <Pressable
-          style={styles.button}
-          onPress={() => navigation.navigate("SectionMenu")}
-        >
-          <Text style={styles.buttonText}>Section</Text>
-        </Pressable>
-        <Pressable
-          style={styles.button}
-          onPress={() => navigation.navigate("Login")}
-        >
-          <Text style={styles.buttonText}>Login</Text>
-        </Pressable>
-
-        <Pressable
-          style={styles.button}
-          onPress={() => navigation.navigate("Feedback")}
-        >
-          <Text style={styles.buttonText}>Feedback</Text>
-        </Pressable>
-      </View>
       <View style={styles.container}>
         <Text style={getThemedText(styles.headerText, colorScheme)}>
           Welcome to Little Lemon
@@ -80,18 +55,5 @@ const styles = StyleSheet.create({
     padding: 25,
     marginVertical: 8,
     textAlign: "center",
-  },
-  row: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    backgroundColor: "#EE9972",
-    borderRadius: 8,
-    marginHorizontal: 10,
-    marginTop: 10,
-  },
-  buttonText: {
-    fontSize: 16,
-    textAlign: "center",
-    paddingVertical: 10,
   },
 });

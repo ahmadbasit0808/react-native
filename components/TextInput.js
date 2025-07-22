@@ -20,8 +20,12 @@ import {
   Platform,
   Alert,
 } from "react-native";
-import { getThemedText, getThemedInput } from "../utils/colorSchemes";
-
+import {
+  getThemedText,
+  getThemedInput,
+  getThemedBg,
+} from "../utils/colorSchemes";
+import { ButtonStyles } from "../styles/button";
 export default function Form() {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -66,7 +70,10 @@ export default function Form() {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={styles.container}
     >
-      <ScrollView keyboardDismissMode="on-drag">
+      <ScrollView
+        keyboardDismissMode="on-drag"
+        contentContainerStyle={getThemedBg(colorScheme)}
+      >
         <Text style={getThemedText(styles.title, colorScheme)}>
           Feedback Form
         </Text>
@@ -142,13 +149,13 @@ export default function Form() {
           />
         </View>
         <TouchableOpacity
-          style={styles.button}
+          style={ButtonStyles.button}
           onPress={handleSubmit}
           activeOpacity={0.8}
           accessibilityRole="button"
           accessibilityLabel="Submit form button"
         >
-          <Text style={styles.buttonText}>Submit</Text>
+          <Text style={ButtonStyles.buttonText}>Submit</Text>
         </TouchableOpacity>
       </ScrollView>
     </KeyboardAvoidingView>
@@ -184,18 +191,6 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     height: 40,
     borderRadius: 8,
-  },
-  button: {
-    backgroundColor: "#EE9972",
-    alignSelf: "center",
-    borderRadius: 8,
-    margin: 20,
-  },
-  buttonText: {
-    fontSize: 16,
-    textAlign: "center",
-    paddingVertical: 10,
-    paddingHorizontal: 40,
   },
   feedback: {
     paddingLeft: 10,
