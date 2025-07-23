@@ -13,6 +13,8 @@ return some component)
 7.tabBarIcon ( takes an arrow function props are (focused , size, color) , returns an icon (<Iconicons>) for vector-icons
 here you can set the icon using route.name and also depending on its focused state.
 )
+8.Drawer Navigation (similar to other navigations , we pass useLegacyImplementation as props for performance)
+9.We can Nest navigations by creating component of child navigator and passing this component as screen to parent navigator
 */
 
 import { NavigationContainer } from "@react-navigation/native";
@@ -47,7 +49,7 @@ export default function App() {
             />
           ),
           tabBarStyle: { backgroundColor: "#ffffff" },
-          tabBarActiveTintColor: "#111111",
+          tabBarActiveTintColor: "#EE9972",
           tabBarInactiveTintColor: "#444444",
 
           tabBarIcon: ({ focused, color, size }) => {
